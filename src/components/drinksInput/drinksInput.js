@@ -5,10 +5,30 @@ import { useState } from "react";
 import React from "react";
 
 export default function DrinksInput() {
-const [headachState, setHeadacheState] = useState(5)
-function handleClick(){
 
+const [headacheState, setHeadacheState] = useState(5);
+const [nauseaState, setNauseaState] = useState(5)
+const [fatigueState, setFatigueState] = useState(5)
+
+function handleClick(){
+console.log("final results:", nauseaState, headacheState, fatigueState)
 }
+
+function changeNauseaValue(event, value){
+setNauseaState(value)
+console.log(nauseaState)
+}
+
+function changeHeadacheValue(event, value){
+    setHeadacheState(value)
+    console.log(headacheState)
+    }
+
+    function changeFatigueValue(event, value){
+        setFatigueState(value)
+        console.log(fatigueState)
+        }
+    
 
   return (
     <div>
@@ -18,6 +38,8 @@ function handleClick(){
         className="slider"
         defaultValue={5}
         valueLabelDisplay="auto"
+        value={nauseaState}
+        onChange={changeNauseaValue}
         step={1}
         marks
         min={0}
@@ -29,6 +51,8 @@ function handleClick(){
         className="slider"
         defaultValue={5}
         valueLabelDisplay="auto"
+        value={headacheState}
+        onChange={changeHeadacheValue}
         step={1}
         marks
         min={0}
@@ -40,6 +64,8 @@ function handleClick(){
         className="slider"
         defaultValue={5}
         valueLabelDisplay="auto"
+        value={fatigueState}
+        onChange={changeFatigueValue}
         step={1}
         marks
         min={0}
