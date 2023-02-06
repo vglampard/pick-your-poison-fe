@@ -19,6 +19,10 @@ export default function DrinksInput() {
     console.log("final results:", nauseaState, headacheState, fatigueState);
   }
 
+function handleSubmit(data, e){
+    e.preventDefault();
+    console.log("DATA:", data)
+}
   function changeNauseaValue(event, value) {
     setNauseaState(value);
     console.log(nauseaState);
@@ -42,10 +46,7 @@ export default function DrinksInput() {
 <form
 			aria-label="Add new resource"
 			className="form"
-			// onSubmit={handleSubmit(data => {
-			// 	console.log(data);
-			// 	// postResources(data);
-			// })}
+			onSubmit={handleSubmit}
 		>
             <select
 						{...register("wine", { required: "Wine amount is required" })} aria-label = "wine-amount-dropdown"
@@ -135,6 +136,7 @@ export default function DrinksInput() {
         marks
         min={0}
         max={10}
+        {...register("nausea", { required: "Nausea score is required" })}
       />
       <p>Headache?</p>
       <Slider
@@ -165,6 +167,7 @@ export default function DrinksInput() {
       <Button variant="contained" onClick={handleClick}>
         Log drinks
       </Button>
+      <input id="submit-btn" type="submit" />
 </form>
 
 
