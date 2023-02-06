@@ -1,5 +1,6 @@
 NPMId roboto and material UI (Emotion, not other one)
 import slider?
+Added this to head tag in html     <meta name="viewport" content="initial-scale=1, width=device-width" />
 
 # Getting Started with Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
