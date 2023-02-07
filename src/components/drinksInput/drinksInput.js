@@ -4,7 +4,7 @@ import { useState } from "react";
 import React from "react";
 import { Paper } from "@mui/material";
 
-export default function DrinksInput() {
+export default function DrinksInput({ setNewSessionState }) {
   const [headacheState, setHeadacheState] = useState(5);
   const [nauseaState, setNauseaState] = useState(5);
   const [fatigueState, setFatigueState] = useState(5);
@@ -15,17 +15,17 @@ export default function DrinksInput() {
   const [alcopopState, setAlcopopState] = useState(0);
 
   function handleClick() {
-    console.log(
-      "final results:",
-      nauseaState,
-      headacheState,
-      fatigueState,
-      wineState,
-      beerState,
-      spiritState,
-      alcopopState,
-      ciderState
-    );
+    const newSession = {
+      nausea: nauseaState,
+      headache: headacheState,
+      fatigue: fatigueState,
+      wine: wineState,
+      beer: beerState,
+      spirit: spiritState,
+      alcopop: alcopopState,
+      cider: ciderState,
+    };
+    setNewSessionState(newSession);
   }
   function changeNauseaValue(event, value) {
     setNauseaState(value);
