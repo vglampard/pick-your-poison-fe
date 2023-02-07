@@ -1,12 +1,12 @@
 import './App.css';
 import DrinksInput from './components/drinksInput/drinksInput';
 import { useState, useEffect } from "react";
-import resultsDisplay from './components/resultsDisplay/resultsDisplay';
+import ResultsDisplay from './components/resultsDisplay/resultsDisplay';
 
 
 function App() {
 const [newSessionState, setNewSessionState] = useState({})
-const [sessionResults, setSessionResults] = useState({})
+const [sessionResults, setSessionResults] = useState([])
 
 // TEST load all sessions on mount
 useEffect(()=> {
@@ -21,8 +21,8 @@ async function getSessions(){
       },
     })
     const data = await sessions.json();
-    console.log("data from backend", data.payload[0])
-    setSessionResults(data.payload[0])
+    console.log("data from backend", data.payload)
+    setSessionResults(data.payload)
 }
 
 
@@ -32,7 +32,7 @@ async function getSessions(){
       <h1> What's your poison?</h1>
     <button onClick={getSessions}>get sessions</button>
       <DrinksInput setNewSessionState = {setNewSessionState}/>
-      <resultsDisplay sessionResults = {sessionResults}/>
+      <ResultsDisplay sessionResults = {sessionResults}/>
       </header>
      
     </div>
