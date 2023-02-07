@@ -26,6 +26,8 @@ export default function DrinksInput({ setNewSessionState }) {
       cider: ciderState,
     };
     setNewSessionState(newSession);
+
+    console.log(newSession)
   }
   function changeNauseaValue(event, value) {
     setNauseaState(value);
@@ -45,16 +47,16 @@ export default function DrinksInput({ setNewSessionState }) {
     console.log(wineState);
   }
   function handleBeerChange(event) {
-    setWineState(event.target.value);
+    setBeerState(event.target.value);
   }
   function handleCiderChange(event) {
-    setWineState(event.target.value);
+    setCiderState(event.target.value);
   }
   function handleSpiritChange(event) {
-    setWineState(event.target.value);
+    setSpiritState(event.target.value);
   }
   function handleAlcopopChange(event) {
-    setWineState(event.target.value);
+    setAlcopopState(event.target.value);
   }
 
   return (
