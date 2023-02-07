@@ -1,6 +1,8 @@
 import './App.css';
 // NB maybe do this for roboto fonts? npm install @fontsource/roboto
 import DrinksInput from './components/drinksInput/drinksInput';
+import { FormDemo } from './components/TestForm/testForm';
+import { FormWithHookForm } from './components/TestForm/testForm';
 
 function App() {
   return (
@@ -9,6 +11,7 @@ function App() {
       <h1> Pick your poison...</h1>
     
       <DrinksInput/>
+      <FormWithHookForm/>
       </header>
      
     </div>
