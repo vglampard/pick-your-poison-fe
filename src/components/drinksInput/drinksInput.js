@@ -1,7 +1,6 @@
-import Slider from "@mui/material/Slider";
-import Button from "@mui/material/Button";
+// import Slider from "@mui/material/Slider";
+// import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import React from "react";
 import { Paper } from "@mui/material";
 

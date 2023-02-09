@@ -15,7 +15,7 @@ useEffect(()=> {
 
 // function that pulls complete session data from db
 async function getSessions(){
-  console.log("initial frtch")
+  console.log("initial fetch")
   const sessions = await fetch('https://pick-your-poison-backend.onrender.com/api/sessions', {
       method: "GET", 
       headers: {
@@ -29,7 +29,7 @@ async function getSessions(){
 
 // functino that posts new session to db
 const postNewSession = async (session) => {
-  const resources = await fetch(`https://pick-your-poison-backend.onrender.com/api/sessions`, {
+  const resources = await fetch('https://pick-your-poison-backend.onrender.com/api/sessions', {
     method: "POST",
 
     headers: {
