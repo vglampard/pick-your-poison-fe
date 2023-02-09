@@ -1,148 +1,110 @@
 import Slider from "@mui/material/Slider";
 import Button from "@mui/material/Button";
+import { useForm } from "react-hook-form";
 import { useState } from "react";
 import React from "react";
 import { Paper } from "@mui/material";
 
-export default function DrinksInput({ setNewSessionState }) {
-  const [headacheState, setHeadacheState] = useState(5);
-  const [nauseaState, setNauseaState] = useState(5);
-  const [fatigueState, setFatigueState] = useState(5);
-  const [wineState, setWineState] = useState(0);
-  const [beerState, setBeerState] = useState(0);
-  const [ciderState, setCiderState] = useState(0);
-  const [spiritState, setSpiritState] = useState(0);
-  const [alcopopState, setAlcopopState] = useState(0);
+export default function DrinksInput({ setNewSessionState, postNewSession }) {
 
-  function handleClick() {
-    const newSession = {
-      nausea: nauseaState,
-      headache: headacheState,
-      fatigue: fatigueState,
-      wine: wineState,
-      beer: beerState,
-      spirit: spiritState,
-      alcopop: alcopopState,
-      cider: ciderState,
-    };
-    setNewSessionState(newSession);
+  const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm({});
 
-    console.log(newSession)
-  }
-  function changeNauseaValue(event, value) {
-    setNauseaState(value);
-    console.log(nauseaState);
-  }
-  function changeHeadacheValue(event, value) {
-    setHeadacheState(value);
-    console.log(headacheState);
-  }
-  function changeFatigueValue(event, value) {
-    setFatigueState(value);
-    console.log(fatigueState);
-  }
 
-  function handleWineChange(event) {
-    setWineState(event.target.value);
-    console.log(wineState);
-  }
-  function handleBeerChange(event) {
-    setBeerState(event.target.value);
-  }
-  function handleCiderChange(event) {
-    setCiderState(event.target.value);
-  }
-  function handleSpiritChange(event) {
-    setSpiritState(event.target.value);
-  }
-  function handleAlcopopChange(event) {
-    setAlcopopState(event.target.value);
-  }
 
   return (
     <Paper>
-      <label for="wine">Wine?</label>
-      <input
-        type="text"
-        id="wine"
-        name="wine"
-        onChange={handleWineChange}
-      ></input>
+      <form onSubmit={handleSubmit(data => {console.log(data); postNewSession(data) })}>
+        <label for="wine">Wine?</label>
+        <input
+          type="text"
+          id="wine"
+          name="wine"
+          {...register("wine", { required: "Wine amount is required" })}
+        />
+        		<p>{errors.wine?.message}</p>
 
-      <label for="beer">Beer?</label>
-      <input
-        type="text"
-        id="beer"
-        name="beer"
-        onChange={handleBeerChange}
-      ></input>
+        <label for="beer">Beer?</label>
+        <input
+          type="text"
+          id="beer"
+          name="beer"
+          {...register("beer", { required: "Beer is required" })}
+    />
+		<p>{errors.beer?.message}</p>
+        <label for="cider">Cider?</label>
+        <input
+          type="text"
+          id="cider"
+          name="cider"
+          {...register("cider", { required: "cider is required" })}
+        />
+         		<p>{errors.beer?.message}</p>
 
-      <label for="cider">Cider?</label>
-      <input
-        type="text"
-        id="cider"
-        name="cider"
-        onChange={handleCiderChange}
-      ></input>
-
-      <label for="spirit">Spirits?</label>
-      <input
-        type="text"
-        id="spirit"
-        name="spirit"
-        onChange={handleSpiritChange}
-      ></input>
-
-      <label for="alcopop">Alcopop?</label>
-      <input
-        type="text"
-        id="alcopop"
-        name="alcopop"
-        onChange={handleAlcopopChange}
-      ></input>
-
-      <p>Nausea?</p>
-      <Slider
-        aria-label="nausea"
-        className="slider"
-        defaultValue={5}
-        valueLabelDisplay="auto"
-        value={nauseaState}
-        onChange={changeNauseaValue}
-        step={1}
-        marks
-        min={0}
-        max={10}
-      />
-      <p>Headache?</p>
-      <Slider
-        aria-label="headache"
-        className="slider"
-        defaultValue={5}
-        valueLabelDisplay="auto"
-        value={headacheState}
-        onChange={changeHeadacheValue}
-        step={1}
-        marks
-        min={0}
-        max={10}
-      />
-      <p>Fatigue?</p>
-      <Slider
-        aria-label="fatigue"
-        className="slider"
-        defaultValue={5}
-        valueLabelDisplay="auto"
-        value={fatigueState}
-        onChange={changeFatigueValue}
-        step={1}
-        marks
-        min={0}
-        max={10}
-      />
-      <Button variant="contained" onClick={handleClick}>
-        Log drinks
-      </Button>
+        <label for="spirit">Spirits?</label>
+        <input
+          type="text"
+          id="spirit"
+          name="spirit"
+          {...register("spirit", { required: "spirit is required" })}
+        />
+         		<p>{errors.spirit?.message}</p>
+        <label for="alcopop">Alcopop?</label>
+        <input
+          type="text"
+          id="alcopop"
+          name="alcopop" 
+          {...register("alcopop", { required: "alcopop is required" })}
+        />
+         		<p>{errors.alcopop?.message}</p>
+        {/* <p>Nausea?</p> */}
+       
+        {/* <Slider
+          aria-label="nausea"
+          className="slider"
+          defaultValue={5}
+          valueLabelDisplay="auto"
+          value={nauseaState}
+          {...register("nausea", { required: "nausea is required" })}
+          step={1}
+          marks
+          min={0}
+          max={10}
+        />
+        <p>Headache?</p>
+        <Slider
+          aria-label="headache"
+          className="slider"
+          defaultValue={5}
+          valueLabelDisplay="auto"
+          value={headacheState}
+          onChange={changeHeadacheValue}
+          step={1}
+          marks
+          min={0}
+          max={10}
+        />
+        <p>Fatigue?</p>
+        <Slider
+          aria-label="fatigue"
+          className="slider"
+          defaultValue={5}
+          valueLabelDisplay="auto"
+          value={fatigueState}
+          onChange={changeFatigueValue}
+          step={1}
+          marks
+          min={0}
+          max={10}
+        /> */}
+        {/* <Button variant="contained" onClick={handleClick}>
+          Log drinks
+        </Button> */}
+        <input id="submit-btn" type="submit" />
+      </form>
     </Paper>
   );
 }
