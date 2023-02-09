@@ -10,18 +10,19 @@ export default function ResultsDisplay({sessionResults}) {
     }
 
 
-  return (
-    <div>
-       {sessionResults.map(session=>{
-       let average = calculateOverall(session)
-            return (
-                <>
-                <h3>Hangover overall score: {average}</h3>
-                <p>Your hangover on {getDate(session.date)} was: <br></br> Nausea: {session.nausea}. Headache: {session.headache}. Fatigue: {session.fatigue}</p>
-                </>
-                )
 
-       })} 
-    </div>
-  )
+    return (
+      <div>
+         {sessionResults.map(session=>{
+         let average = calculateOverall(session)
+              return (
+                  <>
+                  <h3>Your {getDate(session.date)} Hangover</h3>
+                  <p> Hangover overall score: {average} <br></br> Nausea: {session.nausea}. Headache: {session.headache}. Fatigue: {session.fatigue}</p>
+                  </>
+                  )
+  
+         })} 
+      </div>
+    )
 }
