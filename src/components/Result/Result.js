@@ -17,8 +17,8 @@ function handleClick (){
         {session.nausea}. Headache: {session.headache}. Fatigue:{" "}
         {session.fatigue}
       </p>
-      <button onClick={handleClick}></button>
-      {showBreakdown && <DrinksBreakdownDisplay/>}
+      <button onClick={handleClick}>What drinks? </button>
+      {showBreakdown && <DrinksBreakdownDisplay session={session}/>}
     </>
   );
 }
