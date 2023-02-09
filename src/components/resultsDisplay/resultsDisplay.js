@@ -1,28 +1,22 @@
-import React from 'react'
+import React from "react";
+import Result from "../Result/Result";
 
-export default function ResultsDisplay({sessionResults}) {
-    function calculateOverall(session){
-        return Math.round((session.fatigue + session.headache + session.nausea )/ 3)
-    }
+export default function ResultsDisplay({ sessionResults }) {
+  function calculateOverall(session) {
+    return Math.round(
+      (session.fatigue + session.headache + session.nausea) / 3
+    );
+  }
 
-    function getDate(date){
-    return date.substring(0, 10)
-    }
+  function getDate(date) {
+    return date.substring(0, 10);
+  }
 
-
-
-    return (
-      <div>
-         {sessionResults.map(session=>{
-         let average = calculateOverall(session)
-              return (
-                  <>
-                  <h3>Your {getDate(session.date)} Hangover</h3>
-                  <p> Hangover overall score: {average} <br></br> Nausea: {session.nausea}. Headache: {session.headache}. Fatigue: {session.fatigue}</p>
-                  </>
-                  )
-  
-         })} 
-      </div>
-    )
+  return (
+    <div>
+      {sessionResults.map((session) => {
+        return <Result getDate={getDate} calculateOverall={calculateOverall} session = {session}/>;
+      })}
+    </div>
+  );
 }
