@@ -1,6 +1,8 @@
 import React from "react";
 
 export default function DrinksBreakdownDisplay({ session }) {
+
+ // Filter down the session object into just hte drinks values
   const trimmedDrinks = (({ wine, beer, cider, spirit, alcopop }) => ({
     wine,
     beer,
@@ -9,12 +11,7 @@ export default function DrinksBreakdownDisplay({ session }) {
     alcopop,
   }))(session);
 
-  // break object into entries array
-  // for each one, if entry[0] === wine, beer, cider, spirit, alcopop AND if entry[1] !== 0: push that item into new array
-  // make object from those kvs
-
-// alt : could use recursion to pop the last one off if it fails to meeet condition? 
-
+  // Function that removes any null entries from the object (REFACTOR!)
   function trimToDrinks(trimmedDrinks) {
     let entries = Object.entries(trimmedDrinks);
     let finalTrim = [];
@@ -24,12 +21,12 @@ export default function DrinksBreakdownDisplay({ session }) {
         finalTrim.push(entry);
       }
     }
-
     console.log("final trime object:", Object.fromEntries(finalTrim));
-
-    return finalTrim;
+    return Object.fromEntries(finalTrim);
   }
 
-  trimToDrinks(trimmedDrinks);
-  return <div>Here are your drinks. </div>;
+  const drinks = trimToDrinks(trimmedDrinks);
+  return <div>Here are your drinks:</div>;
+
+  
 }
