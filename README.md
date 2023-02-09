@@ -23,3 +23,6 @@ npm i @date-io/date-fns
 
 check get sessios model works
 work out how to gather data 
+Hook up post session
+validate post sesstion entries
+make component that renders icons of each drink the number of times they were had

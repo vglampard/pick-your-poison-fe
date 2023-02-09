@@ -45,7 +45,6 @@ const postNewSession = async (session) => {
     <div className="App">
       <header className="App-header">
       <h1> What's your poison?</h1>
-    <button onClick={getSessions}>get sessions</button>
       <DrinksInput setNewSessionState = {setNewSessionState} postNewSession = {postNewSession}/>
       <ResultsDisplay sessionResults = {sessionsResults}/>
       </header>
