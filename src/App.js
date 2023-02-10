@@ -7,11 +7,14 @@ import ResultsDisplay from './components/resultsDisplay/resultsDisplay';
 function App() {
 const [newSessionState, setNewSessionState] = useState({})
 const [sessionsResults, setSessionsResults] = useState([])
+const URL = process.env.REACT_APP_URL
 
 // TEST load all sessions on mount
 useEffect(()=> {
   getSessions();
 }, []);
+
+console.log("URL: ", URL)
 
 // function that pulls complete session data from db
 async function getSessions(){
@@ -38,7 +41,7 @@ const postNewSession = async (session) => {
     body: JSON.stringify(session),
   });
   const data = await resources.json();
-  console.log("data succcessfully poted:", data)
+  console.log("data succcessfully posted:", data)
 };
 
   return (

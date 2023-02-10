@@ -20,6 +20,7 @@ npm i @date-io/date-fns
 </FormControl> */
 }
 
+npm i axios did not work - dependency issues? Tried this npm install --legacy-peer-deps
 
 check get sessios model works
 work out how to gather data 
