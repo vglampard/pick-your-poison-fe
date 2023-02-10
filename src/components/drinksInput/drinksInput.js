@@ -3,6 +3,7 @@
 import { useForm } from "react-hook-form";
 import React from "react";
 import { Paper } from "@mui/material";
+import styles from "./drinksInput.css"
 
 export default function DrinksInput({ setNewSessionState, postNewSession }) {
   const {
@@ -19,6 +20,9 @@ export default function DrinksInput({ setNewSessionState, postNewSession }) {
           postNewSession(data);
         })}
       >
+
+<label for="date">Date:</label>
+<input type="date" id="date" name="date" {...register("date", { required: "date is required" })}/>
         <label for="wine">Wine?</label>
         <input
           type="text"
@@ -70,7 +74,7 @@ export default function DrinksInput({ setNewSessionState, postNewSession }) {
           min= "0"
           max = "10"
           className = "slider"
-          {...register("Nausea", { required: "Nausea is required" })}
+          {...register("nausea", { required: "Nausea is required" })}
         />
          <label for="headache">Headache?</label>
         <input

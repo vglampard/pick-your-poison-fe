@@ -24,7 +24,7 @@ export default function DrinkBreakdown({ drink, amount }) {
           src={imageSources[drink][drink]}
           alt={drink}
           aria-label={drink}
-          style={{ width: "20px" }}
+          style={{ width: "7vw" }}
         />
       );
     }
