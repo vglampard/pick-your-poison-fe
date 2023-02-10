@@ -3,6 +3,7 @@
 import { useForm } from "react-hook-form";
 import React from "react";
 import { Paper } from "@mui/material";
+import styles from "./drinksInput.css"
 
 export default function DrinksInput({ setNewSessionState, postNewSession }) {
   const {

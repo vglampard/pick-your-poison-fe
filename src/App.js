@@ -3,57 +3,54 @@ import DrinksInput from './components/drinksInput/drinksInput';
 import { useState, useEffect } from "react";
 import ResultsDisplay from './components/resultsDisplay/resultsDisplay';
 import axios from "axios";
+import logo from "./logo.png"
+import DrinkFilter from './components/DrinkFilter/DrinkFilter';
 
 function App() {
 const [newSessionState, setNewSessionState] = useState({})
 const [sessionsResults, setSessionsResults] = useState([])
+const [filterResults, setFilterResults] = useState(false)
+const [seeAll, setSeeAll] = useState(false)
 
 // TEST load all sessions on mount
 useEffect(()=> {
   getSessions();
 }, []);
 
-// function that pulls complete session data from db
-// async function getSessions(){
-//   console.log("initial fetch")
-//   const sessions = await fetch('https://pick-your-poison-backend.onrender.com/api/sessions', {
-//       method: "GET", 
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     })
-//     const data = await sessions.json();
-//     console.log("data from backend", data.payload)
-//     setSessionsResults(data.payload)
-// }
-
 //AXIOS function that pulls all sessions data 
 async function getSessions(){
   const res = await axios.get('https://pick-your-poison-backend.onrender.com/api/sessions');
-  console.log("AXIOS RESULTR:", res.data.payload)
   setSessionsResults(res.data.payload);
+}
+
+// funciton that toggles visibility of 'filter by culprit' section
+function handleClickFilter (){
+  setFilterResults(!filterResults)
+}
+
+function handleClickSeeAll(){
+setSeeAll(!seeAll)
 }
 
 // functino that posts new session to db
 const postNewSession = async (session) => {
-  const resources = await fetch('https://pick-your-poison-backend.onrender.com/api/sessions', {
-    method: "POST",
-
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(session),
-  });
-  const data = await resources.json();
-  console.log("data succcessfully poted:", data)
+  const newSession = await axios.post('https://pick-your-poison-backend.onrender.com/api/sessions', session)
+  console.log("data succcessfully poted:", newSession)
 };
-
+let buttontext = seeAll ? "HIDE HANGOVERS" : "SEE HANGOVERS"
   return (
     <div className="App">
       <header className="App-header">
+      <img src={logo} alt="skull glass"/>
+      <div>
       <h1> What's your poison?</h1>
+      <h6>Keep track of which combos hit you hardest!</h6>
+      </div>
       <DrinksInput setNewSessionState = {setNewSessionState} postNewSession = {postNewSession}/>
-      <ResultsDisplay sessionResults = {sessionsResults}/>
+      <button onClick={handleClickSeeAll}>{ buttontext}</button>
+      {seeAll && <ResultsDisplay sessionResults = {sessionsResults}/>}
+      <button onClick={handleClickFilter}>FILTER BY CULPRIT</button>
+      {filterResults && <DrinkFilter sessionsResults = {sessionsResults}/>}
       </header>
      
     </div>
