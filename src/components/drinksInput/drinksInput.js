@@ -61,6 +61,38 @@ export default function DrinksInput({ setNewSessionState, postNewSession }) {
           {...register("alcopop", { required: "alcopop is required" })}
         />
         <p>{errors.alcopop?.message}</p>
+
+        <label for="nausea">Nausea?</label>
+        <input
+          type="range"
+          id="nausea"
+          name="nausea"
+          min= "0"
+          max = "10"
+          className = "slider"
+          {...register("Nausea", { required: "Nausea is required" })}
+        />
+         <label for="headache">Headache?</label>
+        <input
+          type="range"
+          id="headache"
+          name="headache"
+          min= "0"
+          max = "10"
+          className = "slider"
+          {...register("headache", { required: "Headache is required" })}
+        />
+         <label for="fatigue">Fatigue?</label>
+        <input
+          type="range"
+          id="fatigue"
+          name="fatigue"
+          min= "0"
+          max = "10"
+          className = "slider"
+          {...register("fatigue", { required: "Fatigue is required" })}
+        />
+
         {/* <p>Nausea?</p> */}
 
         {/* <Slider
