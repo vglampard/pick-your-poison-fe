@@ -74,7 +74,7 @@ export default function DrinksInput({ setNewSessionState, postNewSession }) {
           min= "0"
           max = "10"
           className = "slider"
-          {...register("Nausea", { required: "Nausea is required" })}
+          {...register("nausea", { required: "Nausea is required" })}
         />
          <label for="headache">Headache?</label>
         <input
