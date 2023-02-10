@@ -2,7 +2,7 @@ import './App.css';
 import DrinksInput from './components/drinksInput/drinksInput';
 import { useState, useEffect } from "react";
 import ResultsDisplay from './components/resultsDisplay/resultsDisplay';
-
+import axios from "axios";
 
 function App() {
 const [newSessionState, setNewSessionState] = useState({})
@@ -14,17 +14,24 @@ useEffect(()=> {
 }, []);
 
 // function that pulls complete session data from db
+// async function getSessions(){
+//   console.log("initial fetch")
+//   const sessions = await fetch('https://pick-your-poison-backend.onrender.com/api/sessions', {
+//       method: "GET", 
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     })
+//     const data = await sessions.json();
+//     console.log("data from backend", data.payload)
+//     setSessionsResults(data.payload)
+// }
+
+//AXIOS function that pulls all sessions data 
 async function getSessions(){
-  console.log("initial fetch")
-  const sessions = await fetch('https://pick-your-poison-backend.onrender.com/api/sessions', {
-      method: "GET", 
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    const data = await sessions.json();
-    console.log("data from backend", data.payload)
-    setSessionsResults(data.payload)
+  const res = await axios.get('https://pick-your-poison-backend.onrender.com/api/sessions');
+  console.log("AXIOS RESULTR:", res.data.payload)
+  setSessionsResults(res.data.payload);
 }
 
 // functino that posts new session to db
