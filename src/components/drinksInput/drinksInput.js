@@ -20,6 +20,9 @@ export default function DrinksInput({ setNewSessionState, postNewSession }) {
           postNewSession(data);
         })}
       >
+
+<label for="date">Date:</label>
+<input type="date" id="date" name="date" {...register("date", { required: "date is required" })}/>
         <label for="wine">Wine?</label>
         <input
           type="text"
