@@ -2,7 +2,6 @@
 // import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
 import React from "react";
-import { Paper } from "@mui/material";
 import styles from "./drinksInput.css"
 
 export default function DrinksInput({ setNewSessionState, postNewSession }) {
@@ -13,7 +12,7 @@ export default function DrinksInput({ setNewSessionState, postNewSession }) {
   } = useForm({});
 
   return (
-    <Paper elevation = {20}>
+
       <form
         onSubmit={handleSubmit((data) => {
           console.log(data);
@@ -97,51 +96,8 @@ export default function DrinksInput({ setNewSessionState, postNewSession }) {
           {...register("fatigue", { required: "Fatigue is required" })}
         />
 
-        {/* <p>Nausea?</p> */}
-
-        {/* <Slider
-          aria-label="nausea"
-          className="slider"
-          defaultValue={5}
-          valueLabelDisplay="auto"
-          value={nauseaState}
-          {...register("nausea", { required: "nausea is required" })}
-          step={1}
-          marks
-          min={0}
-          max={10}
-        />
-        <p>Headache?</p>
-        <Slider
-          aria-label="headache"
-          className="slider"
-          defaultValue={5}
-          valueLabelDisplay="auto"
-          value={headacheState}
-          onChange={changeHeadacheValue}
-          step={1}
-          marks
-          min={0}
-          max={10}
-        />
-        <p>Fatigue?</p>
-        <Slider
-          aria-label="fatigue"
-          className="slider"
-          defaultValue={5}
-          valueLabelDisplay="auto"
-          value={fatigueState}
-          onChange={changeFatigueValue}
-          step={1}
-          marks
-          min={0}
-          max={10}
-        /> */}
-        {/* <Button variant="contained" onClick={handleClick}>
-          Log drinks
-        </Button> */}
         <input id="submit-btn" type="submit" />
       </form>
-    </Paper>
+
   );
 }
