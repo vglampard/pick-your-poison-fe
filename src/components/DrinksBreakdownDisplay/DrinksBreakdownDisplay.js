@@ -12,7 +12,6 @@ export default function DrinksBreakdownDisplay({ session }) {
     alcopop,
   }))(session);
 
-
   // Function that removes any null entries from the object and returns kvs array (REFACTOR!)
   function trimToDrinks(trimmedDrinks) {
     let entries = Object.entries(trimmedDrinks);
@@ -22,23 +21,19 @@ export default function DrinksBreakdownDisplay({ session }) {
         finalTrim.push(entry);
       }
     }
-return finalTrim
+    return finalTrim;
     // return Object.fromEntries(finalTrim);
   }
 
   const drinks = trimToDrinks(trimmedDrinks);
-  drinks.map((drink)=>{
-    console.log("drinks iteratinng:", drink)}
-  )
-  console.log("drinks final trimmed", drinks)
-  return <div>Here are your drinks:  {drinks}:
-{drinks.map((drink)=>{
-  return <DrinkBreakdown drink ={drink[0]} amount = {drink[1]}/>}
-)} 
 
-  </div>;
+  return (
+    <div>
+      Drink count: {drinks}:
+      {/* Map over drinks array and for each render a component displaying the correct number of icons of that drink */}
+      {drinks.map((drink) => {
+        return <DrinkBreakdown drink={drink[0]} amount={drink[1]} />;
+      })}
+    </div>
+  );
 }
-
-
-// map over an array of arrays. 7
-// for each item in the array, render item[1] images of type item[0]

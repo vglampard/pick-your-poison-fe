@@ -1,12 +1,13 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import DrinksBreakdownDisplay from "../DrinksBreakdownDisplay/DrinksBreakdownDisplay";
 
 export default function Result({ session, calculateOverall, getDate }) {
-    const [showBreakdown, setShowBreakdown] = useState(false)
+  const [showBreakdown, setShowBreakdown] = useState(false);
 
-function handleClick (){
-    setShowBreakdown(!showBreakdown)
-}
+  // State so user can toggle visibility of icon breakdown of drinks
+  function handleClick() {
+    setShowBreakdown(!showBreakdown);
+  }
 
   return (
     <>
@@ -18,7 +19,7 @@ function handleClick (){
         {session.fatigue}
       </p>
       <button onClick={handleClick}>What drinks? </button>
-      {showBreakdown && <DrinksBreakdownDisplay session={session}/>}
+      {showBreakdown && <DrinksBreakdownDisplay session={session} />}
     </>
   );
 }

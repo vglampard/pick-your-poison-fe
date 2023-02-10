@@ -5,18 +5,20 @@ import React from "react";
 import { Paper } from "@mui/material";
 
 export default function DrinksInput({ setNewSessionState, postNewSession }) {
-
   const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm({});
-
-
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({});
 
   return (
     <Paper>
-      <form onSubmit={handleSubmit(data => {console.log(data); postNewSession(data) })}>
+      <form
+        onSubmit={handleSubmit((data) => {
+          console.log(data);
+          postNewSession(data);
+        })}
+      >
         <label for="wine">Wine?</label>
         <input
           type="text"
@@ -24,7 +26,7 @@ export default function DrinksInput({ setNewSessionState, postNewSession }) {
           name="wine"
           {...register("wine", { required: "Wine amount is required" })}
         />
-        		<p>{errors.wine?.message}</p>
+        <p>{errors.wine?.message}</p>
 
         <label for="beer">Beer?</label>
         <input
@@ -32,8 +34,8 @@ export default function DrinksInput({ setNewSessionState, postNewSession }) {
           id="beer"
           name="beer"
           {...register("beer", { required: "Beer is required" })}
-    />
-		<p>{errors.beer?.message}</p>
+        />
+        <p>{errors.beer?.message}</p>
         <label for="cider">Cider?</label>
         <input
           type="text"
@@ -41,7 +43,7 @@ export default function DrinksInput({ setNewSessionState, postNewSession }) {
           name="cider"
           {...register("cider", { required: "cider is required" })}
         />
-         		<p>{errors.beer?.message}</p>
+        <p>{errors.beer?.message}</p>
 
         <label for="spirit">Spirits?</label>
         <input
@@ -50,17 +52,17 @@ export default function DrinksInput({ setNewSessionState, postNewSession }) {
           name="spirit"
           {...register("spirit", { required: "spirit is required" })}
         />
-         		<p>{errors.spirit?.message}</p>
+        <p>{errors.spirit?.message}</p>
         <label for="alcopop">Alcopop?</label>
         <input
           type="text"
           id="alcopop"
-          name="alcopop" 
+          name="alcopop"
           {...register("alcopop", { required: "alcopop is required" })}
         />
-         		<p>{errors.alcopop?.message}</p>
+        <p>{errors.alcopop?.message}</p>
         {/* <p>Nausea?</p> */}
-       
+
         {/* <Slider
           aria-label="nausea"
           className="slider"
