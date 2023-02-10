@@ -7,7 +7,7 @@ import ResultsDisplay from './components/resultsDisplay/resultsDisplay';
 function App() {
 const [newSessionState, setNewSessionState] = useState({})
 const [sessionsResults, setSessionsResults] = useState([])
-const URL = process.env.REACT_APP_URL
+const URL = process.env.REACT_APP_URL;
 
 // TEST load all sessions on mount
 useEffect(()=> {
