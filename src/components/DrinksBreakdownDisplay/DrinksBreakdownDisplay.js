@@ -1,13 +1,9 @@
 import React from "react";
-import wine from "./wine.png"
-import cider from "./cider.png"
-import beer from "./beer.png"
-import spirit from "./spirit.png"
-import alcopop from "./alcopop.png"
 
+import DrinkBreakdown from "../DrinkBreakdown/DrinkBreakdown";
 
 export default function DrinksBreakdownDisplay({ session }) {
-  // Filter down the session object into just hte drinks values
+  // Filter down the session object into just the drinks values
   const trimmedDrinks = (({ wine, beer, cider, spirit, alcopop }) => ({
     wine,
     beer,
@@ -16,32 +12,12 @@ export default function DrinksBreakdownDisplay({ session }) {
     alcopop,
   }))(session);
 
-  // function renderImages(number, img) {
-  //   let content = [];
-  //   for (let i = 0; i < number; i += 1) {
-  //     content.push(<img src={img} alt={img} aria-label={img} />);
-  //   }
-  //   return content;
-  // }
 
-  function renderAllIcons(drinks){
-    for (let drink of drinks){
-      let content = [];
-      for (let i = 0; i < drink.length; i += 1) {
-        content.push(<img src={drink} alt={drink} aria-label={drink} />);
-        console.log("icon added")
-      }
-      return content;
-
-    }
-  }
-
-  // Function that removes any null entries from the object (REFACTOR!)
+  // Function that removes any null entries from the object and returns kvs array (REFACTOR!)
   function trimToDrinks(trimmedDrinks) {
     let entries = Object.entries(trimmedDrinks);
     let finalTrim = [];
     for (let entry of entries) {
-      console.log("entry", entry);
       if (entry[1] !== 0) {
         finalTrim.push(entry);
       }
@@ -51,9 +27,14 @@ return finalTrim
   }
 
   const drinks = trimToDrinks(trimmedDrinks);
+  drinks.map((drink)=>{
+    console.log("drinks iteratinng:", drink)}
+  )
   console.log("drinks final trimmed", drinks)
   return <div>Here are your drinks:  {drinks}:
-    {renderAllIcons(drinks)}
+{drinks.map((drink)=>{
+  return <DrinkBreakdown drink ={drink[0]} amount = {drink[1]}/>}
+)} 
 
   </div>;
 }
