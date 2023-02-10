@@ -26,3 +26,6 @@ work out how to gather data
 Hook up post session
 validate post sesstion entries
 make component that renders icons of each drink the number of times they were had
+
+FIXES
+page is not automatically rerendering when new item is added!
