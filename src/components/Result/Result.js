@@ -11,7 +11,7 @@ export default function Result({ session, calculateOverall, getDate }) {
 
   return (
     <>
-      <h3>Your {getDate(session.date)} Hangover</h3>
+      <h3>😔{getDate(session.date)}</h3>
       <p>
         {" "}
         Hangover overall score: {calculateOverall(session)} <br></br> Nausea:{" "}

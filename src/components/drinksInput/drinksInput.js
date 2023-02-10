@@ -12,7 +12,7 @@ export default function DrinksInput({ setNewSessionState, postNewSession }) {
   } = useForm({});
 
   return (
-    <Paper>
+    <Paper elevation = {20}>
       <form
         onSubmit={handleSubmit((data) => {
           console.log(data);
