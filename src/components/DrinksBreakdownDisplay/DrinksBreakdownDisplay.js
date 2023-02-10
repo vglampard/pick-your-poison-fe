@@ -29,6 +29,7 @@ export default function DrinksBreakdownDisplay({ session }) {
       let content = [];
       for (let i = 0; i < drink.length; i += 1) {
         content.push(<img src={drink} alt={drink} aria-label={drink} />);
+        console.log("icon added")
       }
       return content;
 
@@ -51,8 +52,9 @@ return finalTrim
 
   const drinks = trimToDrinks(trimmedDrinks);
   console.log("drinks final trimmed", drinks)
-  return <div>Here are your drinks:
+  return <div>Here are your drinks:  {drinks}:
     {renderAllIcons(drinks)}
+
   </div>;
 }
 
