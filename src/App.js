@@ -4,20 +4,19 @@ import { useState, useEffect } from "react";
 import ResultsDisplay from "./components/resultsDisplay/resultsDisplay";
 import axios from "axios";
 import logo from "./logo.png";
-import DrinkFilter from "./components/DrinkFilter/DrinkFilter";
 
 function App() {
   const [newSessionState, setNewSessionState] = useState({});
   const [sessionsResults, setSessionsResults] = useState([]);
-  const [filterResults, setFilterResults] = useState(false);
   const [seeAll, setSeeAll] = useState(false);
   const [seeInput, setSeeInput] = useState(false);
+  let buttontext = seeAll ? "HIDE HANGOVERS" : "SEE HANGOVERS";
 
   // TEST load all sessions on mount
   useEffect(() => {
     getSessions();
-    console.log("ALL DATA:", sessionsResults);
-  }, []);
+    // console.log("ALL DATA:", sessionsResults);
+  }, [sessionsResults]);
 
   //AXIOS function that pulls all sessions data
   async function getSessions() {
@@ -25,11 +24,6 @@ function App() {
       "https://pick-your-poison-backend.onrender.com/api/sessions"
     );
     setSessionsResults(res.data.payload);
-  }
-
-  // funciton that toggles visibility of 'filter by culprit' section
-  function handleClickFilter() {
-    setFilterResults(!filterResults);
   }
 
   function handleClickSeeAll() {
@@ -42,13 +36,16 @@ function App() {
 
   // functino that posts new session to db
   const postNewSession = async (session) => {
+    console.log("new session post fired")
     const newSession = await axios.post(
       "https://pick-your-poison-backend.onrender.com/api/sessions",
       session
     );
     console.log("data succcessfully poted:", newSession);
+    setSessionsResults([...sessionsResults, newSession])
+    console.log("NEW SESSIONS:", sessionsResults)
   };
-  let buttontext = seeAll ? "HIDE HANGOVERS" : "SEE HANGOVERS";
+
   return (
     <div className="App">
       <header className="App-header">
@@ -65,9 +62,8 @@ function App() {
           />
         )}
         <button onClick={handleClickSeeAll}>{buttontext}</button>
-        {seeAll && <ResultsDisplay sessionResults={sessionsResults} />}
-        <button onClick={handleClickFilter}>FILTER BY CULPRIT</button>
-        {filterResults && <DrinkFilter sessionsResults={sessionsResults} />}
+        {seeAll && <ResultsDisplay sessionsResults={sessionsResults} />}
+    
       </header>
     </div>
   );

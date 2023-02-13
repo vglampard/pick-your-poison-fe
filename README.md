@@ -1,28 +1,8 @@
-NPMId roboto and material UI (Emotion, not other one)
-import slider?
-Added this to head tag in html     <meta name="viewport" content="initial-scale=1, width=device-width" />
-npm i @date-io/date-fns
+# What's Your Poison?
 
-{
-  /* <FormControl fullWidth>
-  <InputLabel id="demo-simple-select-label">Age</InputLabel>
-  <Select
-    labelId="demo-simple-select-label"
-    id="demo-simple-select"
-    value={age}
-    label="Age"
-    onChange={handleWineChange}
-  >
-    <MenuItem value={10}>Ten</MenuItem>
-    <MenuItem value={20}>Twenty</MenuItem>
-    <MenuItem value={30}>Thirty</MenuItem>
-  </Select>
-</FormControl> */
-}
+Fullstack app helping users track alcohol consumption and see which drink combinations give them the worst hangovers. 
 
+Work in progress! See the front end [here]. 
 
-check get sessios model works
-work out how to gather data 
-Hook up post session
-validate post sesstion entries
-make component that renders icons of each drink the number of times they were had
+Quick view of current status:
+![]()
