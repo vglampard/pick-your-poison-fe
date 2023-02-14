@@ -6,7 +6,7 @@ import axios from "axios";
 import logo from "./logo.png";
 
 function App() {
-  const [newSessionState, setNewSessionState] = useState({});
+  const [worstHangover, setWorstHangover] = useState({});
   const [sessionsResults, setSessionsResults] = useState([]);
   const [seeAll, setSeeAll] = useState(false);
   const [seeInput, setSeeInput] = useState(false);
@@ -15,7 +15,8 @@ function App() {
   // TEST load all sessions on mount
   useEffect(() => {
     getSessions();
-    // console.log("ALL DATA:", sessionsResults);
+    console.log("ALL DATA:", sessionsResults);
+    getWorstHangover(sessionsResults)
   }, [sessionsResults]);
 
   //AXIOS function that pulls all sessions data
@@ -36,15 +37,29 @@ function App() {
 
   // functino that posts new session to db
   const postNewSession = async (session) => {
-    console.log("new session post fired")
+    // console.log("new session post fired")
     const newSession = await axios.post(
       "https://pick-your-poison-backend.onrender.com/api/sessions",
       session
     );
-    console.log("data succcessfully poted:", newSession);
+    // console.log("data succcessfully poted:", newSession);
     setSessionsResults([...sessionsResults, newSession])
     console.log("NEW SESSIONS:", sessionsResults)
   };
+
+  function getWorstHangover(sessionsResults){
+let worst = {};
+let max = 0
+    for(let i=0; i<sessionsResults.length; i++){
+      let sesh = sessionsResults[i]
+      let hangoverAverage = (sesh.fatigue + sesh.headache + sesh.nausea) /3
+if(hangoverAverage > max) {
+  max = hangoverAverage; 
+worst = sesh;
+}
+}
+console.log("WORST:", worst);
+  }
 
   return (
     <div className="App">
