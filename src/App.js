@@ -18,7 +18,8 @@ function App() {
   useEffect(() => {
     getSessions();
     console.log("ALL DATA:", sessionsResults);
-    setWorstHangover(getWorstHangover(sessionsResults));
+    setWorstHangover(getWorstHangover(sessionsResults))
+;
   }, []);
 
   //AXIOS function that pulls all sessions data
@@ -38,7 +39,7 @@ function App() {
 
   function handleClickSeeInput() {
     setSeeInput(!seeInput);
-    console.log("WH:", worstHangover);
+    // console.log("WH:", worstHangover);
   }
 
   // functino that posts new session to db
@@ -85,7 +86,7 @@ function App() {
         )}
         <button onClick={handleClickSeeAll}>{buttontext}</button>
         {seeAll && <ResultsDisplay sessionsResults={sessionsResults} />}
-        {worstHangover && (
+        {(worstHangover !== {}) && (
          <Metrics worstHangover = {worstHangover}/>
         )}
       </header>
