@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import ResultsDisplay from "./components/resultsDisplay/resultsDisplay";
 import axios from "axios";
 import logo from "./logo.png";
-
+import Metrics from "./components/Metrics/Metrics";
 function App() {
   const [worstHangover, setWorstHangover] = useState({});
   const [sessionsResults, setSessionsResults] = useState([]);
@@ -14,7 +14,7 @@ function App() {
   let buttontext = seeAll ? "HIDE HANGOVERS" : "SEE HANGOVERS";
 
   // TEST load all sessions on mount
-  // have removed sessionsResults as a dependency 
+  // have removed sessionsResults as a dependency
   useEffect(() => {
     getSessions();
     console.log("ALL DATA:", sessionsResults);
@@ -23,7 +23,7 @@ function App() {
 
   //AXIOS function that pulls all sessions data
   async function getSessions() {
-    setSessionsResults("getsessions fired");
+    console.log("getsessions fired");
 
     const res = await axios.get(
       "https://pick-your-poison-backend.onrender.com/api/sessions"
@@ -38,6 +38,7 @@ function App() {
 
   function handleClickSeeInput() {
     setSeeInput(!seeInput);
+    console.log("WH:", worstHangover);
   }
 
   // functino that posts new session to db
@@ -84,7 +85,9 @@ function App() {
         )}
         <button onClick={handleClickSeeAll}>{buttontext}</button>
         {seeAll && <ResultsDisplay sessionsResults={sessionsResults} />}
-        {/* {worstHangover && <p>{worstHangover}</p>} */}
+        {worstHangover && (
+         <Metrics worstHangover = {worstHangover}/>
+        )}
       </header>
     </div>
   );

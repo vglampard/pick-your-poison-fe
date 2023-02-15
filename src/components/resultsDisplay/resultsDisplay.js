@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import Result from "../Result/Result";
 import DrinkFilter from "../DrinkFilter/DrinkFilter";
+import { getDate } from "../../utils/utils";
 
 export default function ResultsDisplay({ sessionsResults }) {
   const [filterResults, setFilterResults] = useState(false);
@@ -10,9 +11,7 @@ export default function ResultsDisplay({ sessionsResults }) {
     );
   }
 
-  function getDate(date) {
-    return date.substring(0, 10);
-  }
+
 
   // funciton that toggles visibility of 'filter by culprit' section
   function handleClickFilter() {
