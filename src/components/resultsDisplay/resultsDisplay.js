@@ -25,7 +25,7 @@ console.log("SR:", sessionsResults)
       {sessionsResults.map((session) => {
         return <Result getDate={getDate} calculateOverall={calculateOverall} session = {session}/>;
       })}
-      <Metrics worstHangover={worstHangover} />
+      {/* <Metrics worstHangover={worstHangover} /> */}
     </div>
   );
 }

@@ -5,7 +5,6 @@ import { getGraphArray } from "../../utils/utils";
 export default function Result({ session, calculateOverall, getDate }) {
   const [showBreakdown, setShowBreakdown] = useState(false);
 
-
   function handleClick() {
     setShowBreakdown(!showBreakdown);
   }
@@ -21,6 +20,8 @@ export default function Result({ session, calculateOverall, getDate }) {
         <div className="flex flex-col items-center m-2">
           <Graph session={session} />
           <DrinksBreakdownDisplay session={session} />{" "}
+
+          
         </div>
       )}
     </div>
