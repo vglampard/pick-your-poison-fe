@@ -20,11 +20,11 @@ export default function DrinkBreakdown({ drink, amount }) {
     let content = [];
     for (let i = 0; i < amount; i += 1) {
       content.push(
-        <img
+        <img className="h-15 w-10"
           src={imageSources[drink][drink]}
           alt={drink}
           aria-label={drink}
-          style={{ width: "7vw" }}
+        
         />
       );
     }

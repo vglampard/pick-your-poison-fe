@@ -5,6 +5,8 @@ import ResultsDisplay from "./components/resultsDisplay/resultsDisplay";
 import axios from "axios";
 import Metrics from "./components/Metrics/Metrics";
 import Banner from "./components/Banner/Banner";
+import Graph from "./components/Graph/Graph";
+
 function App() {
   const [worstHangover, setWorstHangover] = useState({});
   const [sessionsResults, setSessionsResults] = useState([]);
@@ -78,6 +80,7 @@ function App() {
             postNewSession={postNewSession}
           />
         )}
+       {/* <Graph session={sessionsResults[0]} className=""/> */}
         <button onClick={handleClickSeeAll}>{buttontext}</button>
         {seeAll && <ResultsDisplay sessionsResults={sessionsResults} worstHangover={worstHangover}/>}
         {/* {worstHangover !== {} && <Metrics worstHangover={worstHangover} />} */}
