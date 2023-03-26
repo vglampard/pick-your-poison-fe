@@ -3,7 +3,7 @@ import DrinksBreakdownDisplay from '../DrinksBreakdownDisplay/DrinksBreakdownDis
 import { getDate } from '../../utils/utils'
 
 export default function Metrics({worstHangover}) {
-    console.log("WH at metrics:", worstHangover)
+    console.log("WH at metrics:", worstHangover.date)
   return (
   
     <div>

@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import Result from "../Result/Result";
 import DrinkFilter from "../DrinkFilter/DrinkFilter";
 import { getDate } from "../../utils/utils";
-
-export default function ResultsDisplay({ sessionsResults }) {
+import Metrics from "../Metrics/Metrics";
+export default function ResultsDisplay({ sessionsResults, worstHangover }) {
   const [filterResults, setFilterResults] = useState(false);
   function calculateOverall(session) {
     return Math.round(
@@ -11,21 +11,20 @@ export default function ResultsDisplay({ sessionsResults }) {
     );
   }
 
-
-
   // funciton that toggles visibility of 'filter by culprit' section
   function handleClickFilter() {
     setFilterResults(!filterResults);
   }
 
   return (
-    <div>
-          <button onClick={handleClickFilter}>FILTER BY CULPRIT</button>
+    <div className="flex gap-2 grid grid-cols-2">
+          {/* <button onClick={handleClickFilter}>FILTER BY CULPRIT</button> */}
           
-        {filterResults && <DrinkFilter sessionsResults={sessionsResults} />}
+        {/* {filterResults && <DrinkFilter sessionsResults={sessionsResults} />} */}
       {sessionsResults.map((session) => {
         return <Result getDate={getDate} calculateOverall={calculateOverall} session = {session}/>;
       })}
+      <Metrics worstHangover={worstHangover} />
     </div>
   );
 }

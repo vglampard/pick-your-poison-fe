@@ -3,23 +3,22 @@ import DrinksInput from "./components/drinksInput/drinksInput";
 import { useState, useEffect } from "react";
 import ResultsDisplay from "./components/resultsDisplay/resultsDisplay";
 import axios from "axios";
-import logo from "./logo.png";
 import Metrics from "./components/Metrics/Metrics";
+import Banner from "./components/Banner/Banner";
 function App() {
   const [worstHangover, setWorstHangover] = useState({});
   const [sessionsResults, setSessionsResults] = useState([]);
   const [seeAll, setSeeAll] = useState(false);
   const [seeInput, setSeeInput] = useState(false);
   const [newSession, setNewSession] = useState("");
-  let buttontext = seeAll ? "HIDE HANGOVERS" : "SEE HANGOVERS";
+  let buttontext = seeAll ? "- HIDE HANGOVERS" : "+ SEE HANGOVERS";
 
   // TEST load all sessions on mount
   // have removed sessionsResults as a dependency
   useEffect(() => {
     getSessions();
     console.log("ALL DATA:", sessionsResults);
-    setWorstHangover(getWorstHangover(sessionsResults))
-;
+    setWorstHangover(getWorstHangover(sessionsResults));
   }, []);
 
   //AXIOS function that pulls all sessions data
@@ -29,7 +28,7 @@ function App() {
     const res = await axios.get(
       "https://pick-your-poison-backend.onrender.com/api/sessions"
     );
-    console.log("DATA FROM FETCH:", res.data.payload);
+    // console.log("DATA FROM FETCH:", res.data.payload);
     setSessionsResults(res.data.payload);
   }
 
@@ -39,7 +38,6 @@ function App() {
 
   function handleClickSeeInput() {
     setSeeInput(!seeInput);
-    // console.log("WH:", worstHangover);
   }
 
   // functino that posts new session to db
@@ -72,12 +70,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} alt="skull glass" />
-        <div>
-          <h1> What's your poison?</h1>
-          <h6>Keep track of which combos hit you hardest!</h6>
-        </div>
-        <button onClick={handleClickSeeInput}>ADD NEW SESSION</button>
+        <Banner/>
+        <button onClick={handleClickSeeInput}>+ ADD NEW SESSION</button>
         {seeInput && (
           <DrinksInput
             setNewSessionState={setNewSession}
@@ -85,10 +79,8 @@ function App() {
           />
         )}
         <button onClick={handleClickSeeAll}>{buttontext}</button>
-        {seeAll && <ResultsDisplay sessionsResults={sessionsResults} />}
-        {(worstHangover !== {}) && (
-         <Metrics worstHangover = {worstHangover}/>
-        )}
+        {seeAll && <ResultsDisplay sessionsResults={sessionsResults} worstHangover={worstHangover}/>}
+        {/* {worstHangover !== {} && <Metrics worstHangover={worstHangover} />} */}
       </header>
     </div>
   );

@@ -28,7 +28,7 @@ export default function DrinksBreakdownDisplay({ session }) {
   const drinks = trimToDrinks(trimmedDrinks);
 
   return (
-    <div>
+    <div className="flex">
       {/* Map over drinks array and for each render a component displaying the correct number of icons of that drink */}
       {drinks.map((drink) => {
         return <DrinkBreakdown drink={drink[0]} amount={drink[1]} />;

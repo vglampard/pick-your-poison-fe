@@ -10,16 +10,16 @@ export default function Result({ session, calculateOverall, getDate }) {
   }
 
   return (
-    <>
-      <h3>😔{getDate(session.date)}</h3>
-      <p>
+    <div className="bg-red-200 text-sm rounded">
+      <h3 className="font-bold">😔{getDate(session.date)}</h3>
+      <div className="flex flex-col">
         {" "}
-        Hangover overall score: {calculateOverall(session)} <br></br> Nausea:{" "}
-        {session.nausea}. Headache: {session.headache}. Fatigue:{" "}
-        {session.fatigue}
-      </p>
-      <button onClick={handleClick}>What drinks? </button>
+        <p>Hangover overall score: {calculateOverall(session)} </p>
+        <p> Nausea: {session.nausea}.</p> <p>Headache: {session.headache}. </p>{" "}
+        <p>Fatigue: {session.fatigue}</p>
+      </div>
+      <button onClick={handleClick}>WYP? </button>
       {showBreakdown && <DrinksBreakdownDisplay session={session} />}
-    </>
+    </div>
   );
 }
