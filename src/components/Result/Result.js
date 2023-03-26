@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DrinksBreakdownDisplay from "../DrinksBreakdownDisplay/DrinksBreakdownDisplay";
 import Graph from "../Graph/Graph";
-import { getGraphArray } from "../../utils/utils";
+
 export default function Result({ session, calculateOverall, getDate }) {
   const [showBreakdown, setShowBreakdown] = useState(false);
 
@@ -9,19 +9,21 @@ export default function Result({ session, calculateOverall, getDate }) {
     setShowBreakdown(!showBreakdown);
   }
 
-  console.log("DID IT WORK:", getGraphArray(session));
-  return (
-    <div className="bg-red-200 text-sm rounded">
-      <h3 className="font-bold">😔{getDate(session.date)}</h3>
-      <div className="flex flex-col"></div>
+let average = calculateOverall(session)
+console.log("AVERAGE:", average)
 
-      <button onClick={handleClick}>WYP? </button>
+  return (
+    <div className="bg-red-200 p-2 text-sm rounded">
+      <h3 className="">😔{getDate(session.date)}</h3>
+      <div className="flex  justify-end">
+<p>{average}</p>
+
+      <button onClick={handleClick} className="rounded-full bg-red-100 w-5 outline-1 drop-shadow"> ? </button>
+      </div>
       {showBreakdown && (
         <div className="flex flex-col items-center m-2">
           <Graph session={session} />
           <DrinksBreakdownDisplay session={session} />{" "}
-
-          
         </div>
       )}
     </div>

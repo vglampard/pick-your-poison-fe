@@ -33,10 +33,10 @@ console.log("DRINKS AT TOOLTIP:", rundown)
   return (
     <div className="flex">
       {/* ### Tooltip start */}
-      <div class="container mx-auto py-12">
-        <div class="-mx-4 flex flex-wrap justify-center">
-          <div class="w-full px-4 sm:w-1/2 lg:w-1/4">
-            <div class="mb-14">
+      <div class="container mx-auto py-5">
+        <div class=" flex flex-wrap justify-center">
+          <div class="w-full sm:w-1/2 lg:w-1/4">
+            <div class="">
               <div class="group relative inline-block">
                 {/* Map over drinks array and for each render a component displaying the correct number of icons of that drink */}
                 <>{drinks.map((drink) => {

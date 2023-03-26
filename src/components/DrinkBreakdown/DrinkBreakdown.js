@@ -31,5 +31,5 @@ export default function DrinkBreakdown({ drink, amount }) {
     return content;
   }
 
-  return <div className="flex flex-wrap">{renderAllIcons(drink, amount)}</div>;
+  return <div className="flex flex-wrap h-10">{renderAllIcons(drink, amount)}</div>;
 }
