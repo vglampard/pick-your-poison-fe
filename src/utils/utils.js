@@ -1,3 +1,5 @@
+import axios from "axios";
+
 // Get more presentable substring for date display
 export function getDate(date) {
   return date.substring(0, 10);
@@ -19,22 +21,20 @@ export function trimToDrinks(trimmedDrinks) {
 }
 
 // Create rundown text string detailing drinks consumed
-export function createRundown(drinks){
+export function createRundown(drinks) {
   return drinks
-  .map((drink) => {
-    return `${drink[1]} x ${drink[0]};`;
-  })
-  .join(" ");
+    .map((drink) => {
+      return `${drink[1]} x ${drink[0]};`;
+    })
+    .join(" ");
 }
 
 export function calculateOverall(session) {
-  return Math.round(
-    (session.fatigue + session.headache + session.nausea) / 3
-  );
+  return Math.round((session.fatigue + session.headache + session.nausea) / 3);
 }
 
-export function toggleState(setState, state){
-  setState(!state)
+export function toggleState(setState, state) {
+  setState(!state);
 }
 
 export function getWorstHangover(sessionsResults) {
@@ -42,11 +42,18 @@ export function getWorstHangover(sessionsResults) {
   let max = 0;
   for (let i = 0; i < sessionsResults.length; i++) {
     let sesh = sessionsResults[i];
-    let hangoverAverage = calculateOverall(sesh)
+    let hangoverAverage = calculateOverall(sesh);
     if (hangoverAverage > max) {
       max = hangoverAverage;
       worst = sesh;
     }
   }
   return worst;
+}
+
+export async function deleteSession(session) {
+  let date = getDate(session.date);
+  await axios.delete(
+    `https://pick-your-poison-backend.onrender.com/api/sessions/${date}`
+  );
 }

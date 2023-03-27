@@ -21,7 +21,7 @@ export default function DrinkBreakdown({ drink, amount }) {
     for (let i = 0; i < amount; i += 1) {
       content.push(
         <img
-          className="h-[3.5rem] w-[2.5rem]"
+          className="w-[30%] p-0 m-1 lg:w-[100px]"
           src={imageSources[drink]}
           alt={drink}
           aria-label={drink}

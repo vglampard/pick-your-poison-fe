@@ -15,6 +15,7 @@ export default function DrinksInput({ postNewSession }) {
       onSubmit={handleSubmit((data) => {
         console.log(data);
         postNewSession(data);
+        
       })}
       className="bg-slate-100 bg-opacity-80 uppercase gap-2 text-sm m-10 flex flex-col p-5 rounded "
     >

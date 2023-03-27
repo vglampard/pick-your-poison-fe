@@ -3,9 +3,9 @@ import DrinksInput from "./components/drinksInput/drinksInput";
 import { useState, useEffect } from "react";
 import ResultsDisplay from "./components/resultsDisplay/resultsDisplay";
 import axios from "axios";
-import Metrics from "./components/Metrics/Metrics";
 import Banner from "./components/Banner/Banner";
 import { toggleState, getWorstHangover } from "./utils/utils";
+
 function App() {
   const [worstHangover, setWorstHangover] = useState({});
   const [sessionsResults, setSessionsResults] = useState([]);
@@ -30,24 +30,21 @@ function App() {
     setSessionsResults(res.data.payload);
   }
 
-  async function deleteSession() {}
-
   // function that posts new session to db
   const postNewSession = async (session) => {
     const newSession = await axios.post(
       "https://pick-your-poison-backend.onrender.com/api/sessions",
       session
     );
+    console.log("NEWSESSIONS:", newSession)
     setSessionsResults([...sessionsResults, newSession]);
   };
 
-  //REFACTOR
   
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="pb-20 min-h-[100vh] bg-slate-500 flex flex-col items-center">
         <Banner />
-        <button onClick={deleteSession}> DELETE </button>
         <button onClick={()=>toggleState(setSeeInput, seeInput)}>+ ADD NEW SESSION</button>
         {seeInput && (
           <DrinksInput
@@ -62,7 +59,6 @@ function App() {
             worstHangover={worstHangover}
           />
         )}
-        {/* {worstHangover !== {} && <Metrics worstHangover={worstHangover} />} */}
       </header>
     </div>
   );
