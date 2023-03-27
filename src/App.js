@@ -3,20 +3,24 @@ import DrinksInput from "./components/drinksInput/drinksInput";
 import { useState, useEffect } from "react";
 import ResultsDisplay from "./components/resultsDisplay/resultsDisplay";
 import axios from "axios";
-import logo from "./logo.png";
-
+import Metrics from "./components/Metrics/Metrics";
+import Banner from "./components/Banner/Banner";
+import { toggleState, getWorstHangover } from "./utils/utils";
 function App() {
-  const [newSessionState, setNewSessionState] = useState({});
+  const [worstHangover, setWorstHangover] = useState({});
   const [sessionsResults, setSessionsResults] = useState([]);
   const [seeAll, setSeeAll] = useState(false);
   const [seeInput, setSeeInput] = useState(false);
-  let buttontext = seeAll ? "HIDE HANGOVERS" : "SEE HANGOVERS";
+  const [newSession, setNewSession] = useState("");
+  let buttontext = seeAll ? "- HIDE HANGOVERS" : "+ SEE HANGOVERS";
 
   // TEST load all sessions on mount
+  // have removed sessionsResults as a dependency
   useEffect(() => {
     getSessions();
-    // console.log("ALL DATA:", sessionsResults);
-  }, [sessionsResults]);
+    console.log("ALL DATA:", sessionsResults);
+    setWorstHangover(getWorstHangover(sessionsResults));
+  }, []);
 
   //AXIOS function that pulls all sessions data
   async function getSessions() {
@@ -26,44 +30,39 @@ function App() {
     setSessionsResults(res.data.payload);
   }
 
-  function handleClickSeeAll() {
-    setSeeAll(!seeAll);
-  }
+  async function deleteSession() {}
 
-  function handleClickSeeInput() {
-    setSeeInput(!seeInput);
-  }
-
-  // functino that posts new session to db
+  // function that posts new session to db
   const postNewSession = async (session) => {
-    console.log("new session post fired")
     const newSession = await axios.post(
       "https://pick-your-poison-backend.onrender.com/api/sessions",
       session
     );
-    console.log("data succcessfully poted:", newSession);
-    setSessionsResults([...sessionsResults, newSession])
-    console.log("NEW SESSIONS:", sessionsResults)
+    setSessionsResults([...sessionsResults, newSession]);
   };
 
+  //REFACTOR
+  
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} alt="skull glass" />
-        <div>
-          <h1> What's your poison?</h1>
-          <h6>Keep track of which combos hit you hardest!</h6>
-        </div>
-        <button onClick={handleClickSeeInput}>ADD NEW SESSION</button>
+        <Banner />
+        <button onClick={deleteSession}> DELETE </button>
+        <button onClick={()=>toggleState(setSeeInput, seeInput)}>+ ADD NEW SESSION</button>
         {seeInput && (
           <DrinksInput
-            setNewSessionState={setNewSessionState}
+            setNewSessionState={setNewSession}
             postNewSession={postNewSession}
           />
         )}
-        <button onClick={handleClickSeeAll}>{buttontext}</button>
-        {seeAll && <ResultsDisplay sessionsResults={sessionsResults} />}
-    
+        <button onClick={()=>toggleState(setSeeAll, seeAll)}>{buttontext}</button>
+        {seeAll && (
+          <ResultsDisplay
+            sessionsResults={sessionsResults}
+            worstHangover={worstHangover}
+          />
+        )}
+        {/* {worstHangover !== {} && <Metrics worstHangover={worstHangover} />} */}
       </header>
     </div>
   );

@@ -8,11 +8,11 @@ import alcopop from "./alcopop.png";
 export default function DrinkBreakdown({ drink, amount }) {
   // Drink sources object
   const imageSources = {
-    cider: { cider },
-    beer: { beer },
-    wine: { wine },
-    spirit: { spirit },
-    alcopop: { alcopop },
+    cider,
+    beer,
+    wine,
+    spirit,
+    alcopop,
   };
 
   // Generic function that pushes correct number of icons into array for rendering
@@ -21,15 +21,15 @@ export default function DrinkBreakdown({ drink, amount }) {
     for (let i = 0; i < amount; i += 1) {
       content.push(
         <img
-          src={imageSources[drink][drink]}
+          className="h-[3.5rem] w-[2.5rem]"
+          src={imageSources[drink]}
           alt={drink}
           aria-label={drink}
-          style={{ width: "7vw" }}
         />
       );
     }
     return content;
   }
 
-  return <div> {renderAllIcons(drink, amount)}</div>;
+  return <div className="flex flex-wrap">{renderAllIcons(drink, amount)}</div>;
 }
