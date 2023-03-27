@@ -19,7 +19,6 @@ export default function ResultsDisplay({ sessionsResults, worstHangover }) {
       {sessionsResults.map((session) => {
         return <Result getDate={getDate} session={session} />;
       })}
-      {/* <Metrics worstHangover={worstHangover} /> */}
     </div>
   );
 }

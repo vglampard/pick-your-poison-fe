@@ -36,7 +36,7 @@ function App() {
       "https://pick-your-poison-backend.onrender.com/api/sessions",
       session
     );
-    console.log("NEWSESSIONS:", newSession)
+    console.log("NEW:", newSession)
     setSessionsResults([...sessionsResults, newSession]);
   };
 
@@ -50,6 +50,7 @@ function App() {
           <DrinksInput
             setNewSessionState={setNewSession}
             postNewSession={postNewSession}
+            setSeeInput={setSeeInput}
           />
         )}
         <button onClick={()=>toggleState(setSeeAll, seeAll)}>{buttontext}</button>

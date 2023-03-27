@@ -41,10 +41,10 @@
   }
 }
 
-img {
+/* img {
   width: 20vw;
   padding-top: 20px;
-}
+} */
 
 @tailwind base;
 @tailwind components;
