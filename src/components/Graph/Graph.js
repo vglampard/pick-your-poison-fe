@@ -14,15 +14,16 @@ export default function Graph({ session }) {
   let sessionData = getGraphArray(session);
   return (
     <BarChart
-      width={200}
-      height={200}
+      width={150}
+      height={150}
       data={sessionData}
       margin={{
         top: 5,
-        right: 30,
-        left: 20,
+        right: 2,
+        left: 0,
         bottom: 5,
       }}
+   
     >
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />

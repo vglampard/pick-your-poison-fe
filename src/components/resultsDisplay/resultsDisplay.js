@@ -17,7 +17,7 @@ export default function ResultsDisplay({ sessionsResults, worstHangover }) {
   //   setFilterResults(!filterResults);
   // }
   return (
-    <div className=" gap-2 grid grid-cols-2 m-5">
+    <div className="flex flex-col gap-2 m-5">
           {/* <button onClick={handleClickFilter}>FILTER BY CULPRIT</button> */}
           {sessionsResults===[] && <p>Loading...</p>}
         {/* {filterResults && <DrinkFilter sessionsResults={sessionsResults} />} */}

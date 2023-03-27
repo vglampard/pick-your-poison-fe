@@ -1,5 +1,5 @@
 import React from "react";
-
+import { trimToDrinks } from "../../utils/utils";
 import DrinkBreakdown from "../DrinkBreakdown/DrinkBreakdown";
 
 export default function DrinksBreakdownDisplay({ session }) {
@@ -12,24 +12,15 @@ export default function DrinksBreakdownDisplay({ session }) {
     alcopop,
   }))(session);
 
-  // Function that removes any null entries from the object and returns kvs array (REFACTOR!)
-  function trimToDrinks(trimmedDrinks) {
-    let entries = Object.entries(trimmedDrinks);
-    let finalTrim = [];
-    for (let entry of entries) {
-      if (entry[1] !== 0) {
-        finalTrim.push(entry);
-      }
-    }
-    return finalTrim;
-    // return Object.fromEntries(finalTrim);
-  }
-
+  // filter down 
   const drinks = trimToDrinks(trimmedDrinks);
 
-  let rundown = drinks.map((drink)=> {return `${drink[1]} glasses of ${drink[0]}`}).join(' ')
+  let rundown = drinks
+    .map((drink) => {
+      return `${drink[1]} glasses of ${drink[0]}`;
+    })
+    .join(" ");
 
-console.log("DRINKS AT TOOLTIP:", rundown)
   return (
     <div className="flex">
       {/* ### Tooltip start */}
@@ -39,9 +30,13 @@ console.log("DRINKS AT TOOLTIP:", rundown)
             <div class="">
               <div class="group relative inline-block">
                 {/* Map over drinks array and for each render a component displaying the correct number of icons of that drink */}
-                <>{drinks.map((drink) => {
-                  return <DrinkBreakdown drink={drink[0]} amount={drink[1]} />;
-                })}</>
+                <>
+                  {drinks.map((drink) => {
+                    return (
+                      <DrinkBreakdown drink={drink[0]} amount={drink[1]} />
+                    );
+                  })}
+                </>
                 <div class="absolute top-full left-1/2 z-20 mt-3 -translate-x-1/2 whitespace-nowrap rounded bg-black py-[6px] px-4 text-sm font-semibold text-white opacity-0 group-hover:opacity-100">
                   <span class="absolute top-[-3px] left-1/2 -z-10 h-2 w-2 -translate-x-1/2 rotate-45 rounded-sm bg-black"></span>
                   <p>{rundown}</p>
