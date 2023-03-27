@@ -21,7 +21,7 @@ export default function DrinkBreakdown({ drink, amount }) {
     for (let i = 0; i < amount; i += 1) {
       content.push(
         <img
-          className="h-15 w-10"
+          className="h-[3.5rem] w-[2.5rem]"
           src={imageSources[drink]}
           alt={drink}
           aria-label={drink}
@@ -31,5 +31,5 @@ export default function DrinkBreakdown({ drink, amount }) {
     return content;
   }
 
-  return <div className="flex flex-wrap h-10">{renderAllIcons(drink, amount)}</div>;
+  return <div className="flex flex-wrap">{renderAllIcons(drink, amount)}</div>;
 }

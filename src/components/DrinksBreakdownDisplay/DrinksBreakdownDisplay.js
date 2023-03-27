@@ -1,5 +1,5 @@
 import React from "react";
-import { trimToDrinks } from "../../utils/utils";
+import { trimToDrinks, createRundown } from "../../utils/utils";
 import DrinkBreakdown from "../DrinkBreakdown/DrinkBreakdown";
 
 export default function DrinksBreakdownDisplay({ session }) {
@@ -12,14 +12,11 @@ export default function DrinksBreakdownDisplay({ session }) {
     alcopop,
   }))(session);
 
-  // filter down 
+  // Remove any k/v pair for which 0 drinks were consumed
   const drinks = trimToDrinks(trimmedDrinks);
 
-  let rundown = drinks
-    .map((drink) => {
-      return `${drink[1]} glasses of ${drink[0]}`;
-    })
-    .join(" ");
+  // Create rundown to display in tooltip 
+  let rundown = createRundown(drinks)
 
   return (
     <div className="flex">

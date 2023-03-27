@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Result from "../Result/Result";
 // import DrinkFilter from "../DrinkFilter/DrinkFilter";
 import { getDate } from "../../utils/utils";
@@ -17,12 +17,12 @@ export default function ResultsDisplay({ sessionsResults, worstHangover }) {
   //   setFilterResults(!filterResults);
   // }
   return (
-    <div className="flex flex-col gap-2 m-5">
-          {/* <button onClick={handleClickFilter}>FILTER BY CULPRIT</button> */}
-          {sessionsResults===[] && <p>Loading...</p>}
-        {/* {filterResults && <DrinkFilter sessionsResults={sessionsResults} />} */}
+    <div className="grid grid-cols-1 gap-2 m-5 md:grid-cols-2 lg:grid-cols-3">
+      {/* <button onClick={handleClickFilter}>FILTER BY CULPRIT</button> */}
+      {sessionsResults === [] && <p>Loading...</p>}
+      {/* {filterResults && <DrinkFilter sessionsResults={sessionsResults} />} */}
       {sessionsResults.map((session) => {
-        return <Result getDate={getDate} calculateOverall={calculateOverall} session = {session}/>;
+        return <Result getDate={getDate} session={session} />;
       })}
       {/* <Metrics worstHangover={worstHangover} /> */}
     </div>

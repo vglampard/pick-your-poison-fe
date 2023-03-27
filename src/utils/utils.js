@@ -17,3 +17,36 @@ export function trimToDrinks(trimmedDrinks) {
   let entries = Object.entries(trimmedDrinks);
   return entries.filter((entry) => entry[1] > 0);
 }
+
+// Create rundown text string detailing drinks consumed
+export function createRundown(drinks){
+  return drinks
+  .map((drink) => {
+    return `${drink[1]} x ${drink[0]};`;
+  })
+  .join(" ");
+}
+
+export function calculateOverall(session) {
+  return Math.round(
+    (session.fatigue + session.headache + session.nausea) / 3
+  );
+}
+
+export function toggleState(setState, state){
+  setState(!state)
+}
+
+export function getWorstHangover(sessionsResults) {
+  let worst = {};
+  let max = 0;
+  for (let i = 0; i < sessionsResults.length; i++) {
+    let sesh = sessionsResults[i];
+    let hangoverAverage = calculateOverall(sesh)
+    if (hangoverAverage > max) {
+      max = hangoverAverage;
+      worst = sesh;
+    }
+  }
+  return worst;
+}
